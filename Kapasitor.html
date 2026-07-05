@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Kapasitansi</title>
+
+<style>
+   body {
+    background: linear-gradient(135deg, #7ee9f7, #ff80bf);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    display: flex;
+    justify-content: center;
+
+    min-height: 100vh;
+    margin: 0;
+
+    padding: 20px 0;
+    overflow-y: auto;
+}
+
+    .container {
+    background: white;
+    padding: 25px;
+    border-radius: 30px;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    box-shadow:60px 20 40px rgba(0,0,0,0.25);
+    border-top: 8px solid #ff3399;
+    border-left: 8px solid #ff3399;
+    border-right: 8px solid #ff3399;
+    border-bottom: 8px solid #ff3399;
+}
+
+    h3 {
+        font-size: 20pt;
+        margin-top: -3px;
+        margin-bottom: 15px;
+        color: #ff3399;
+    }
+
+    img {
+        width: 300px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 1px;
+    }
+
+    input {
+        width: 90%;
+        padding: 8px;
+        margin: 8px 0;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    button {
+        background-color: #ff3399;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #cc0066;
+    }
+
+    #hasil {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h3>Simulasi Kapasitor dalam Power Supply</h3> 
+    <!-- Gambar Kapasitor -->
+    <img src="ChatGPT Image 5 Mei 2026, 16.34.46.png" alt="Gambar Kapasitor">
+
+    <p>Masukkan Kapasitansi (C):</p>
+    <input type="number" id="c" placeholder="Masukkan jumlah Kapasitansi (F)">
+
+    <p>Masukkan Tegangan (V):</p>
+    <input type="number" id="v" placeholder="(0-16 V)">
+
+    <br>
+    <button onclick="hitung()">Hitung</button>
+
+
+    <p id="hasil"></p>
+    <img id="gambarV" src="WhatsApp Image 2026-05-05 at 16.40.04.jpeg" style="display:none; width:300px;">
+</div>
+
+
+<script>
+function hitung(){
+    let C = parseFloat(document.getElementById("c").value);
+    let V = parseFloat(document.getElementById("v").value);
+
+    let Q = C * V;
+
+    let statusV;
+    let statusC;
+    
+    let img = document.getElementById("gambarV");
+
+    // Cek tegangan
+    if (V <= 16) {
+        statusV = "Tegangan aman";
+        statusC = "Kapasitor aman"
+        img.style.display = "none";
+        img.src = "ChatGPT Image 5 Mei 2026, 16.34.46.png";
+        img.style.display="block";
+    } else {
+        statusV = "Tegangan tidak aman";
+        statusC = "Kapasitor rusak"
+        img.src = "WhatsApp Image 2026-05-05 at 16.40.04.jpeg"; // ganti dengan nama gambar kamu
+        img.style.display = "block"; // tampilkan gambar
+    }
+
+    document.getElementById("hasil").innerHTML =
+        "Muatan(Q)= " + Q + " Coulomb <br>" +
+        statusC +
+        "<br>" + statusV;
+}
+</script>
+
+</body>
+</html>
